@@ -1,2 +1,14 @@
-# UntitledVulkanGameEngine
-I am a stupid 14 y/o that thought it was a good idea to start learning Vulkan and this is what I am doing rn
+# UntitledVulkanGameEngine Description
+I am a stupid 14 y/o that thought it was a good idea to start learning Vulkan and this is what I am doing right now. I am real stupid so feel free to mock me and my coding skills
+# Renderer
+The engine uses a Vulkan renderer for now. Soon the name of the engine will eighter change or will stay the same just for the meme. The reason I said that is because I'm planning to also add OpenGL and DirectX support to the renderer
+# Framework ep. #1 foundation
+The framework of the engine is very simple. A Game Instance starts when you start the game and is a universal class (basically always runs no matter if you change levels or characters). The game instance tracks stats like versions and default levels. The three foundation classes are the Game Mode, the Game State and the Player state. The Game Mode defines the rules of the game, only lives on the server and is bound to a level (to make it more clear a game mode class is not bound to a single level but rather the level holds a game mode to function properly). The game mode also holds all of the classes related to the game (pawn/character, game state, player state, player controller and the player UI class). A game state defines the state of the game and runs on the server and all clients. A player state is the state of the player and also runs on the server and all clients. Lastly there is the generic object a.k.a. actor which is a thing that can be spawned in the level
+# Framework ep. #2 player
+There are 3 player classes: the pawn, the player character and the player controller. The pawn is an actor that has the ability to move and take input. The player character is a pawn that supports animations and has a skeletal mesh. Both the character and the pawn are controlled by a player controller wich is a unique identifier that is bound to a client. What the player controller is is a thing that can control characters and pawns but because it's bound to a client you don't have to change your player after going into a vehicle for example. The player controller runs on the server and only on the local client so outside clients can't see or use your player controller.
+# Framework ep. #3 components
+Every Actor is made out of components which are modular code that can be attached to an actor to add functionality i.e. Static Mesh Component add static mesh to an Actor. There are 2 types of components Actor and Level components. Actor components are generic components that don't have features like level transform unlike Level components that have transform and exist in the level.
+# Editor 
+For now the editor doesn't have a GUI and is just a renderer window but later in development GUI will be added allowing for moving tasks that would need to be coded manually to just a few clics or checks. The editor is planned to contain some kind of prefab system so designers won't have to change values in the code.
+# Plans and roadmap
+My plan is that in the end of 2020 I will have finished most of the framework and added a nice renderer. I have a lot of things planned like multiple APIs, GUI editor, a scripting language/a visual programming language that translates into C++, multiplayer support and much more.
