@@ -1,5 +1,5 @@
-﻿  main.cpp
-  VulkanRenderer.cpp
+﻿  VulkanRenderer.cpp
+  main.cpp
   Generating Code...
 LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Renderer.vcxproj -> C:\Users\Madman10K\source\repos\UnepicEngine\x64\Debug\Renderer.exe

@@ -37,6 +37,8 @@ int main()
 		glfwPollEvents();
 	}
 
+	vulkanRenderer.Cleanup();
+
 	glfwDestroyWindow(window);
 	glfwTerminate();
 
