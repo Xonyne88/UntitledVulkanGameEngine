@@ -1,4 +1,3 @@
-//48:10
 #define GLFW_INCLUDE_VULKAN
 #include "GLFW/x64/include/glfw3.h"
 #include <stdexcept>
