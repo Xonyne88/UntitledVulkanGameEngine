@@ -45,7 +45,10 @@
     <ClInclude Include="Src\ClassBase\PlayerController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer\API.h">
+    <ClInclude Include="Renderer\GAPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ProjectAPI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

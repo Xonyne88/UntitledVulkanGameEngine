@@ -28,3 +28,21 @@
 *.exe
 *.out
 *.app
+
+# Text
+*.txt
+*.log
+*.lastbuildstate
+*.tlog
+
+# Other
+*.idb
+*.pdb
+*.ipch
+*.sol
+*.ilk
+*.suo
+*.db
+*.opendb
+*.db-shm
+*.dm-wal

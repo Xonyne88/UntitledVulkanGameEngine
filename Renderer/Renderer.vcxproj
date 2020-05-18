@@ -148,6 +148,11 @@
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="VulkanRenderer.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\CompileShaders.bat" />
+    <None Include="Shaders\RandomShader.frag" />
+    <None Include="Shaders\RandomShader.vert" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

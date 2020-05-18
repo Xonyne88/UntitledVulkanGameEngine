@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Renderer\API.h" />
+    <ClInclude Include="Renderer\GAPI.h" />
     <ClInclude Include="Src\ClassBase\Actor.h" />
     <ClInclude Include="Src\ClassBase\Character.h" />
     <ClInclude Include="Src\ClassBase\Component.h" />
@@ -150,6 +150,7 @@
     <ClInclude Include="Src\ClassBase\GameMode.h" />
     <ClInclude Include="Src\ClassBase\Pawn.h" />
     <ClInclude Include="Src\ClassBase\PlayerState.h" />
+    <ClInclude Include="Src\ProjectAPI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\EntryPoint.cpp" />
