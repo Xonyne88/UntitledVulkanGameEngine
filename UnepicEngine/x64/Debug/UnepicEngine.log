@@ -1,5 +1,0 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (UnepicEngine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  EntryPoint.cpp
-C:\Users\Madman10K\source\repos\UnepicEngine\UnepicEngine\Src\Engine.h(3,1): warning C4005: 'LOG': macro redefinition
-C:\Users\Madman10K\source\repos\UnepicEngine\UnepicEngine\Src\EntryPoint.cpp : message : see previous definition of 'LOG'
-  UnepicEngine.vcxproj -> C:\Users\Madman10K\source\repos\UnepicEngine\x64\Debug\Framework.dll
