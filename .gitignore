@@ -45,4 +45,4 @@
 *.db
 *.opendb
 *.db-shm
-*.dm-wal
+*.db-wal
