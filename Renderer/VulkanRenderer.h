@@ -40,6 +40,9 @@ private:
 	VkSwapchainKHR swapchain;
 	std::vector<SwapChainImage> swapChainImages;
 
+	// Pipeline
+	VkPipelineLayout pipelineLayout;
+
 	//Utility
 	VkFormat swapChainImageFormat;
 	VkExtent2D swapChainExtent;
@@ -49,6 +52,7 @@ private:
 	void createLogicalDevice();
 	void createSwapChain();
 	void createSurface();
+	void createRenderPass();
 	void createGraphicsPipeline();
 
 	//Get Functions

@@ -17,6 +17,7 @@ int VulkanRenderer::init(GLFWwindow* newWindow)
 		getPhysicalDevice();
 		createLogicalDevice();
 		createSwapChain();
+		createRenderPass();
 		createGraphicsPipeline();
     }
 	catch (const std::runtime_error& e) 
@@ -30,6 +31,8 @@ int VulkanRenderer::init(GLFWwindow* newWindow)
 
 void VulkanRenderer::Cleanup()
 {
+	vkDestroyPipelineLayout(mainDevice.logicalDevice, pipelineLayout, nullptr);
+	
 	for(auto image : swapChainImages)
 	{
 		vkDestroyImageView(mainDevice.logicalDevice, image.imageView, nullptr);
@@ -241,6 +244,10 @@ void VulkanRenderer::createSurface()
 	}
 }
 
+void VulkanRenderer::createRenderPass()
+{
+}
+
 void VulkanRenderer::createGraphicsPipeline()
 {
 	// Read SPIR-V shader code
@@ -269,8 +276,113 @@ void VulkanRenderer::createGraphicsPipeline()
 	// Put shader stage creation info into an array
 	VkPipelineShaderStageCreateInfo shaderStages[] = { vertexShaderCreateInfo, fragmentShaderCreateInfo };
 
-	//VkGraphicsPipelineCreateInfo
-	//Create pipeline
+	// <Create pipeline>
+	// Vertex Input
+	VkPipelineVertexInputStateCreateInfo vertexInputCreateInfo = {};
+	vertexInputCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
+	vertexInputCreateInfo.vertexBindingDescriptionCount = 0; 
+	vertexInputCreateInfo.pVertexBindingDescriptions = nullptr;
+	vertexInputCreateInfo.vertexAttributeDescriptionCount = 0;
+	vertexInputCreateInfo.pVertexAttributeDescriptions = nullptr;
+	
+	// Input Assembly
+	VkPipelineInputAssemblyStateCreateInfo inputAssembly = {};
+	inputAssembly.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
+	inputAssembly.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+	inputAssembly.primitiveRestartEnable = VK_FALSE;
+
+	// Viewport and Scissor
+	VkViewport viewPort = {};
+	viewPort.x = 0.0f;									// X start coordinates
+	viewPort.y = 0.0f;									// Y start coordinates
+	viewPort.width = (float)swapChainExtent.width;		// Width of the viewport
+	viewPort.height = (float)swapChainExtent.height;	// Height of the viewport
+	viewPort.minDepth = 0.0f;							// Min framebuffer depth
+	viewPort.maxDepth = 1.0f;							// Max Framebuffer depth
+
+	VkRect2D scissor = {};
+	scissor.offset = { 0, 0 };							// Offset to use region from
+	scissor.extent = swapChainExtent;					// Extent to describe the region to use starting at offset
+
+	VkPipelineViewportStateCreateInfo viewportStateCreateInfo = {};
+	viewportStateCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
+	viewportStateCreateInfo.viewportCount = 1;
+	viewportStateCreateInfo.pViewports = &viewPort;
+	viewportStateCreateInfo.scissorCount = 1;
+	viewportStateCreateInfo.pScissors = &scissor;
+
+	// Dynamic states
+	// std::vector<VkDynamicState> dynamicStateEnables;
+	// dynamicStateEnables.push_back(VK_DYNAMIC_STATE_VIEWPORT);
+	// dynamicStateEnables.push_back(VK_DYNAMIC_STATE_SCISSOR);
+	//VkPipelineDynamicStateCreateInfo dynamicStateCreateInfo = {};
+	//dynamicStateCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
+	//dynamicStateCreateInfo.dynamicStateCount = static_cast<uint32_t>(dynamicStateEnables.size());
+	//dynamicStateCreateInfo.pDynamicStates = dynamicStateEnables.data();
+
+	// Rasterizer
+	VkPipelineRasterizationStateCreateInfo rasterizerCreateInfo = {};
+	rasterizerCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
+	rasterizerCreateInfo.depthClampEnable = VK_FALSE;			// Change if you want far plane clipping
+	rasterizerCreateInfo.rasterizerDiscardEnable = VK_FALSE;	// Wether to discard data and skip rasterizer. Never creates fragment and is only suitable for pipeline without framebuffer output
+	rasterizerCreateInfo.polygonMode = VK_POLYGON_MODE_FILL;	// How to handle filling points between vertices
+	rasterizerCreateInfo.lineWidth = 1.0f;						// How thick lines should be drawn
+	rasterizerCreateInfo.cullMode = VK_CULL_MODE_BACK_BIT;      // Which face of a triangle to cull 
+	rasterizerCreateInfo.frontFace = VK_FRONT_FACE_CLOCKWISE;   // Winding to determine which side is front
+	rasterizerCreateInfo.depthBiasEnable = VK_FALSE;			// Whether to add depthb bias to fragments (good when trying to fix "shadow acne")
+	
+	// Multisampling
+	VkPipelineMultisampleStateCreateInfo multisamplingCreateInfo = {};
+	multisamplingCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
+	multisamplingCreateInfo.sampleShadingEnable = VK_FALSE;		// Temporarily disabled don't worry :D
+	multisamplingCreateInfo.rasterizationSamples = VK_SAMPLE_COUNT_1_BIT;
+
+	// Blending
+	VkPipelineColorBlendAttachmentState colorState = {};
+	colorState.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;
+	colorState.blendEnable = VK_TRUE;
+	colorState.srcColorBlendFactor = VK_BLEND_FACTOR_SRC_ALPHA;
+	colorState.dstColorBlendFactor = VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA;
+	colorState.colorBlendOp = VK_BLEND_OP_ADD;
+
+	colorState.srcAlphaBlendFactor = VK_BLEND_FACTOR_ONE;
+	colorState.dstAlphaBlendFactor = VK_BLEND_FACTOR_ZERO;
+	colorState.alphaBlendOp = VK_BLEND_OP_ADD;
+
+	VkPipelineColorBlendStateCreateInfo colorBlendingCreateInfo = {};
+	colorBlendingCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
+	colorBlendingCreateInfo.logicOpEnable = VK_FALSE;
+	colorBlendingCreateInfo.attachmentCount = 1;
+	colorBlendingCreateInfo.pAttachments = &colorState;
+	
+	VkPipelineLayoutCreateInfo pipelineLayoutCreateInfo = {};
+	pipelineLayoutCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
+	pipelineLayoutCreateInfo.setLayoutCount = 0;
+	pipelineLayoutCreateInfo.pSetLayouts = nullptr;
+	pipelineLayoutCreateInfo.pushConstantRangeCount = 0;
+	pipelineLayoutCreateInfo.pPushConstantRanges = nullptr;
+
+	// Create pipeline layout
+	VkResult result = vkCreatePipelineLayout(mainDevice.logicalDevice, &pipelineLayoutCreateInfo, nullptr, &pipelineLayout);
+
+	if (result != VK_SUCCESS)
+	{
+		throw std::runtime_error("Failed to created pipeline layout!");
+	}
+
+	// TODO: setup depth stencil testing
+
+	// 
+
+
+
+
+
+
+
+
+
+
 
 
 	// Destroy shader modules because they are no longer needed after the pipeline is created
