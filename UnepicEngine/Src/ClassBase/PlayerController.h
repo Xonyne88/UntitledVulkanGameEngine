@@ -9,20 +9,23 @@ static struct PCData
 	std::string ID;
 	std::string Name = "Default";
 
-	//The player number corresponds to the number of playable PCs in the level. 
-	//The bool bIsLocallyControlled is a bool that stated stat if the player controller 
+	//The player number corresponds to the number of playable PCs in the level.  
 	int PlayerNumber;
-	bool bIsLocallyControlled;
 
 	//Defined by default by the game mode. This is the first Character/Pawn the player posesses. If a number is higher than 1 the player will posess the PC bound to that number
-	static const int CurrentPlayer = 1;
+	int CurrentPlayer = 1;
 
 };
 
 void Possess()
 {	
-	if ( PCData::CurrentPlayer > 1)
+	PCData data;
+	if (data.CurrentPlayer > 1)
 	{
 		
+	}
+	else if (data.CurrentPlayer < 1)
+	{
+		throw std::runtime_error("Character/Pawn ID cannot be less than 1");
 	}
 }

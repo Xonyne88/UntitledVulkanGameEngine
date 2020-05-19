@@ -9,6 +9,7 @@
 #include <sstream>
 #include <iostream>
 #include "Utilities.h"
+#include <array>
 
 class VulkanRenderer
 {
@@ -41,7 +42,9 @@ private:
 	std::vector<SwapChainImage> swapChainImages;
 
 	// Pipeline
+	VkPipeline graphicsPipeline; 
 	VkPipelineLayout pipelineLayout;
+	VkRenderPass renderPass;
 
 	//Utility
 	VkFormat swapChainImageFormat;
