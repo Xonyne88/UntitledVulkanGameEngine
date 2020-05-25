@@ -1,5 +1,5 @@
 #include "VulkanRenderer.h"
-//45:51
+
 
 VulkanRenderer::VulkanRenderer()
 {
