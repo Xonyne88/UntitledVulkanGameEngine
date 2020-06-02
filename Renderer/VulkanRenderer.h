@@ -40,6 +40,11 @@ private:
 	VkSurfaceKHR surface;
 	VkSwapchainKHR swapchain;
 	std::vector<SwapChainImage> swapChainImages;
+	std::vector<VkFramebuffer> swapChainFrameBuffers;
+	std::vector<VkCommandBuffer> commandBuffers;
+
+	// Pools
+	VkCommandPool graphicsCommandPool;
 
 	// Pipeline
 	VkPipeline graphicsPipeline; 
@@ -57,6 +62,12 @@ private:
 	void createSurface();
 	void createRenderPass();
 	void createGraphicsPipeline();
+	void createFrameBuffers();
+	void createCommandPool();
+	void createCommandBuffers();
+
+	// Record Functions
+	void recordCommands();
 
 	//Get Functions
 	void getPhysicalDevice();
