@@ -18,7 +18,8 @@ public:
 	
 	//Inits window
 	int init(GLFWwindow * newWindow);
-	
+	void draw();
+
 	//Destroys Instance
 	void Cleanup();
 
@@ -26,6 +27,8 @@ public:
 
 private:
 	GLFWwindow* window;
+
+	int currentFrame = 0;
 
 	//Vulkan components
 	VkInstance instance;
@@ -55,6 +58,11 @@ private:
 	VkFormat swapChainImageFormat;
 	VkExtent2D swapChainExtent;
 
+	// Synchronisation
+	std::vector<VkSemaphore> imageAvailable;
+	std::vector<VkSemaphore> renderFinished;
+	std::vector<VkFence> drawFences;
+
 	//Create Functions
 	void createInstance();
 	void createLogicalDevice();
@@ -65,6 +73,7 @@ private:
 	void createFrameBuffers();
 	void createCommandPool();
 	void createCommandBuffers();
+	void createSynchronisation();
 
 	// Record Functions
 	void recordCommands();
@@ -90,5 +99,4 @@ private:
 	//Create Functions Support basicallyt reusable
 	VkImageView createImageView(VkImage image, VkFormat format, VkImageAspectFlags aspectFlags);
 	VkShaderModule createShaderModule(const std::vector<char>& code);
-
 };
