@@ -46,3 +46,8 @@
 *.opendb
 *.db-shm
 *.db-wal
+*.ipdb
+*.spv
+*.iobj
+*.ipdb
+/x64/
