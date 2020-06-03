@@ -119,8 +119,45 @@ VulkanRenderer::~VulkanRenderer()
 {
 }
 
+/*bool checkValidationLayerSupport()
+{
+	const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
+	const bool enableValidationLayers = true;
+
+
+	uint32_t layerCount;
+	vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
+
+	std::vector<VkLayerProperties> availableLayers(layerCount);
+	vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
+	for (const char* layerName : validationLayers) {
+		bool layerFound = false;
+
+		for (const auto& layerProperties : availableLayers) {
+			if (strcmp(layerName, layerProperties.layerName) == 0) {
+				layerFound = true;
+				break;
+			}
+		}
+
+		if (!layerFound) {
+			return false;
+		}
+	}
+	return true;
+}
+*/
 void VulkanRenderer::createInstance()
 {
+	/*const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
+	const bool enableValidationLayers = true;
+
+	
+	if (enableValidationLayers && !checkValidationLayerSupport()) 
+	{
+		throw std::runtime_error("Validation layers requested, but not available!");
+	}
+	*/
 	//Application info
 	VkApplicationInfo appInfo = {};
 	appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
@@ -134,7 +171,17 @@ void VulkanRenderer::createInstance()
 	VkInstanceCreateInfo createInfo = {};
 	createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 	createInfo.pApplicationInfo = &appInfo;
-
+	/*if (enableValidationLayers) 
+	{
+		createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
+		createInfo.ppEnabledLayerNames = validationLayers.data();
+	}
+	else 
+	{
+		createInfo.enabledLayerCount = 0;
+	}
+	
+	*/
 	//Extensions setup
 	std::vector<const char*> instanceExtensions = std::vector<const char*>();
 	uint32_t glfwExtensionCount = 0;

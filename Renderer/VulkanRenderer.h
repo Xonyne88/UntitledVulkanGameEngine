@@ -10,6 +10,7 @@
 #include <iostream>
 #include "Utilities.h"
 #include <array>
+#include <cstring>
 
 class VulkanRenderer
 {
@@ -83,9 +84,10 @@ private:
 
 	//Checker functions 
 	bool checkInstanceExtensionSupport(std::vector<const char*>* checkExtensions);
+	bool checkValidationLayerSupport();
 	bool checkDeviceExtensionSupport(VkPhysicalDevice device);
 	bool checkDeviceSuitable(VkPhysicalDevice device);
-
+	
 
 	//Getter functions
 	QueueFamilyIndices getQueueFamilies(VkPhysicalDevice device);
@@ -99,4 +101,7 @@ private:
 	//Create Functions Support basicallyt reusable
 	VkImageView createImageView(VkImage image, VkFormat format, VkImageAspectFlags aspectFlags);
 	VkShaderModule createShaderModule(const std::vector<char>& code);
+
+	
+
 };

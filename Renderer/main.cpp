@@ -1,3 +1,4 @@
+#ifdef Vulkan
 #define GLFW_INCLUDE_VULKAN
 #include "GLFW/x64/include/glfw3.h"
 #include <stdexcept>
@@ -44,3 +45,7 @@ int main()
 
 	return 0;
 }
+#elif OpenGL 
+#else 
+
+#endif
