@@ -1,6 +1,7 @@
 #pragma once
-#define GLFW_INCLUDE_VULKAN
-#include "GLFW/x64/include/glfw3.h"
+#ifdef Vulkan
+#include "vulkan/vulkan.h"
+#include "../GLFW/x64/include/glfw3.h"
 #include <set>
 #include <algorithm>
 #include <stdexcept>
@@ -8,7 +9,7 @@
 #include <string>
 #include <sstream>
 #include <iostream>
-#include "Utilities.h"
+#include "VulkanUtilities.h"
 #include <array>
 #include <cstring>
 
@@ -105,3 +106,4 @@ private:
 	
 
 };
+#endif

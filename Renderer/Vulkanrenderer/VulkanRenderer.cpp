@@ -1,3 +1,4 @@
+#ifdef Vulkan
 #include "VulkanRenderer.h"
 
 VulkanRenderer::VulkanRenderer()
@@ -1017,3 +1018,4 @@ VkShaderModule VulkanRenderer::createShaderModule(const std::vector<char>& code)
 	}
 	return shaderModule;
 }
+#endif

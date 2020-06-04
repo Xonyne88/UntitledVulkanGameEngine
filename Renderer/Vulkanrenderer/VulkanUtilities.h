@@ -1,4 +1,5 @@
 #pragma once
+#ifdef Vulkan
 #include <vector>
 #include <fstream>
 
@@ -57,3 +58,4 @@ static std::vector<char> readFile(const std::string& filename)
 
 	return fileBuffer;
 }
+#endif
