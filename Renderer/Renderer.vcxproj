@@ -224,9 +224,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Vulkanrenderer\VkMesh.cpp" />
     <ClCompile Include="Vulkanrenderer\VulkanRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Vulkanrenderer\VkMesh.h" />
     <ClInclude Include="Vulkanrenderer\VulkanUtilities.h" />
     <ClInclude Include="Vulkanrenderer\VulkanRenderer.h" />
   </ItemGroup>

@@ -38,7 +38,7 @@ int main()
 		vulkanRenderer.draw();
 	}
 
-	vulkanRenderer.Cleanup();
+	vulkanRenderer.cleanup();
 
 	glfwDestroyWindow(window);
 	glfwTerminate();

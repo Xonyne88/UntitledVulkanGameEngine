@@ -2,28 +2,22 @@
 #ifdef Vulkan
 #include "vulkan/vulkan.h"
 #include "../GLFW/x64/include/glfw3.h"
-#include <set>
-#include <algorithm>
 #include <stdexcept>
 #include <vector>
-#include <string>
-#include <sstream>
-#include <iostream>
-#include "VulkanUtilities.h"
+#include <set>
+#include <algorithm>
 #include <array>
-#include <cstring>
+#include "VkMesh.h"
+#include "VulkanUtilities.h"
 
 class VulkanRenderer
 {
 public:
 	VulkanRenderer();
-	
-	//Inits window
-	int init(GLFWwindow * newWindow);
-	void draw();
 
-	//Destroys Instance
-	void Cleanup();
+	int init(GLFWwindow* newWindow);
+	void draw();
+	void cleanup();
 
 	~VulkanRenderer();
 
@@ -32,78 +26,79 @@ private:
 
 	int currentFrame = 0;
 
-	//Vulkan components
-	VkInstance instance;
+	// Scene Objects
+	Mesh firstMesh;
 
-	struct 
-	{
+	// Vulkan Components
+	// - Main
+	VkInstance instance;
+	struct {
 		VkPhysicalDevice physicalDevice;
 		VkDevice logicalDevice;
-	}mainDevice;
-	VkQueue GraphicsQueue;
+	} mainDevice;
+	VkQueue graphicsQueue;
 	VkQueue presentationQueue;
 	VkSurfaceKHR surface;
 	VkSwapchainKHR swapchain;
-	std::vector<SwapChainImage> swapChainImages;
-	std::vector<VkFramebuffer> swapChainFrameBuffers;
+
+	std::vector<SwapchainImage> swapChainImages;
+	std::vector<VkFramebuffer> swapChainFramebuffers;
 	std::vector<VkCommandBuffer> commandBuffers;
 
-	// Pools
-	VkCommandPool graphicsCommandPool;
-
-	// Pipeline
-	VkPipeline graphicsPipeline; 
+	// - Pipeline
+	VkPipeline graphicsPipeline;
 	VkPipelineLayout pipelineLayout;
 	VkRenderPass renderPass;
 
-	//Utility
+	// - Pools
+	VkCommandPool graphicsCommandPool;
+
+	// - Utility
 	VkFormat swapChainImageFormat;
 	VkExtent2D swapChainExtent;
 
-	// Synchronisation
+	// - Synchronisation
 	std::vector<VkSemaphore> imageAvailable;
 	std::vector<VkSemaphore> renderFinished;
 	std::vector<VkFence> drawFences;
 
-	//Create Functions
+	// Vulkan Functions
+	// - Create Functions
 	void createInstance();
 	void createLogicalDevice();
-	void createSwapChain();
 	void createSurface();
+	void createSwapChain();
 	void createRenderPass();
 	void createGraphicsPipeline();
-	void createFrameBuffers();
+	void createFramebuffers();
 	void createCommandPool();
 	void createCommandBuffers();
 	void createSynchronisation();
 
-	// Record Functions
+	// - Record Functions
 	void recordCommands();
 
-	//Get Functions
+	// - Get Functions
 	void getPhysicalDevice();
 
-	//Checker functions 
+	// - Support Functions
+	// -- Checker Functions
 	bool checkInstanceExtensionSupport(std::vector<const char*>* checkExtensions);
-	bool checkValidationLayerSupport();
 	bool checkDeviceExtensionSupport(VkPhysicalDevice device);
 	bool checkDeviceSuitable(VkPhysicalDevice device);
-	
 
-	//Getter functions
+	// -- Getter Functions
 	QueueFamilyIndices getQueueFamilies(VkPhysicalDevice device);
 	SwapChainDetails getSwapChainDetails(VkPhysicalDevice device);
 
-    //Choose Functions
-	VkSurfaceFormatKHR chooseBestSurfaceFormat(const std::vector<VkSurfaceFormatKHR> &formats);
+	// -- Choose Functions
+	VkSurfaceFormatKHR chooseBestSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& formats);
 	VkPresentModeKHR chooseBestPresentationMode(const std::vector<VkPresentModeKHR> presentationModes);
-	VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR &surfaceCapabilities);
+	VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& surfaceCapabilities);
 
-	//Create Functions Support basicallyt reusable
+	// -- Create Functions
 	VkImageView createImageView(VkImage image, VkFormat format, VkImageAspectFlags aspectFlags);
 	VkShaderModule createShaderModule(const std::vector<char>& code);
-
-	
 
 };
 #endif
