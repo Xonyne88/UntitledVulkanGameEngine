@@ -35,6 +35,12 @@
     <ClInclude Include="Vulkanrenderer\VkMesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GLFW\x64\include\glfw3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GLFW\x64\include\glfw3native.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\RandomShader.vert" />

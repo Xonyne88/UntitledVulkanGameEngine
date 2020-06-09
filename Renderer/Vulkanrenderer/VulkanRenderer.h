@@ -1,6 +1,6 @@
 #pragma once
 #ifdef Vulkan
-#include "vulkan/vulkan.h"
+#define GLFW_INCLUDE_VULKAN
 #include "../GLFW/x64/include/glfw3.h"
 #include <stdexcept>
 #include <vector>
@@ -27,7 +27,7 @@ private:
 	int currentFrame = 0;
 
 	// Scene Objects
-	Mesh firstMesh;
+	std::vector<Mesh> meshList;
 
 	// Vulkan Components
 	// - Main

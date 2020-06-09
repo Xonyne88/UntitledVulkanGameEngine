@@ -114,9 +114,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='OpenGL|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Vulkan|x64'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Vulkan|x64'" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -228,6 +226,8 @@
     <ClCompile Include="Vulkanrenderer\VulkanRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GLFW\x64\include\glfw3.h" />
+    <ClInclude Include="GLFW\x64\include\glfw3native.h" />
     <ClInclude Include="Vulkanrenderer\VkMesh.h" />
     <ClInclude Include="Vulkanrenderer\VulkanUtilities.h" />
     <ClInclude Include="Vulkanrenderer\VulkanRenderer.h" />
