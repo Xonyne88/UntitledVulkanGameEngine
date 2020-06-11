@@ -9,7 +9,8 @@ int VulkanRenderer::init(GLFWwindow* newWindow)
 {
 	window = newWindow;
 
-	try {
+	try 
+	{
 		createInstance();
 		createSurface();
 		getPhysicalDevice();
@@ -33,7 +34,7 @@ int VulkanRenderer::init(GLFWwindow* newWindow)
 			{ { 0.9, -0.4, 0.0 },{ 1.0f, 0.0f, 0.0f } },
 			{ { 0.9, 0.4, 0.0 },{ 0.0f, 1.0f, 0.0f } },	   
 			{ { 0.1, 0.4, 0.0 },{ 0.0f, 0.0f, 1.0f } },    
-			{ { 0.1, -0.4, 0.0 },{ 1.0f, 1.0f, 0.0f } },   
+			{ { 0.1, -0.4, 5.0 },{ 1.0f, 1.0f, 0.0f } },   
 		};
 
 		// Index Data
@@ -1100,7 +1101,7 @@ VkShaderModule VulkanRenderer::createShaderModule(const std::vector<char>& code)
 	{
 		throw std::runtime_error("Failed to create a shader module!");
 	}
-
+	
 	return shaderModule;
 }
 #endif

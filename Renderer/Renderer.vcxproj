@@ -222,12 +222,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="OpenGLRenderer\GLRenderer.cpp" />
     <ClCompile Include="Vulkanrenderer\VkMesh.cpp" />
     <ClCompile Include="Vulkanrenderer\VulkanRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFW\x64\include\glfw3.h" />
     <ClInclude Include="GLFW\x64\include\glfw3native.h" />
+    <ClInclude Include="OpenGLRenderer\GLRenderer.h" />
     <ClInclude Include="Vulkanrenderer\VkMesh.h" />
     <ClInclude Include="Vulkanrenderer\VulkanUtilities.h" />
     <ClInclude Include="Vulkanrenderer\VulkanRenderer.h" />

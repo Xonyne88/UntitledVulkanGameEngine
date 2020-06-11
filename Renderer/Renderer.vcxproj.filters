@@ -24,6 +24,9 @@
     <ClCompile Include="Vulkanrenderer\VkMesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OpenGLRenderer\GLRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vulkanrenderer\VulkanRenderer.h">
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GLFW\x64\include\glfw3native.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLRenderer\GLRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
