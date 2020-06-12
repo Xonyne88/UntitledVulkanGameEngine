@@ -83,12 +83,12 @@ void GLRenderer::ApplicationLoop()
 	{
 		curSize -= 0.01f;
 	}
-	
+
 	if (curSize >= maxSize || curSize <= minSize)
 	{
 		sizeDirection = !sizeDirection;
 	}
-	
+
 	// Clear window
 	glClearColor(0.6f, 0.651f, 0.4f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -127,6 +127,8 @@ void GLRenderer::AddShader(GLuint theProgram, const char* shaderCode, GLenum sha
 
 	glLinkProgram(shader);
 	glGetShaderiv(theShader, GL_COMPILE_STATUS, &result);
+
+
 
 	if (!result)
 	{
