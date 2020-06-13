@@ -1,5 +1,5 @@
 ## UntitledVulkanGameEngine Description
-I am a stupid 14 y/o that thought it was a good idea to start learning Vulkan and this is what I am doing right now. I am real stupid so feel free to mock me and my coding skills
+A stupid 14 y/o decided to learn Vulkan. I am real stupid so feel free to mock me and my coding skills
 ## Renderer
 The engine uses a Vulkan renderer for now. Soon the name of the engine will eighter change or will stay the same just for the meme. The reason I said that is because I'm planning to also add OpenGL and DirectX support to the renderer
 ## Framework ep. #1 foundation
