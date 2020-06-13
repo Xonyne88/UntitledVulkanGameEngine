@@ -15,49 +15,44 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\Engine.h">
+    <ClInclude Include="Actor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ClassBase\Actor.h">
+    <ClInclude Include="Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ClassBase\Character.h">
+    <ClInclude Include="ACS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ClassBase\Component.h">
+    <ClInclude Include="Base\PlayerState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ClassBase\GameInstance.h">
+    <ClInclude Include="Base\PlayerController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ClassBase\GameMode.h">
+    <ClInclude Include="Base\GameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ClassBase\Pawn.h">
+    <ClInclude Include="Base\GameMode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ClassBase\PlayerState.h">
+    <ClInclude Include="Base\GameInstance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ClassBase\GameState.h">
+    <ClInclude Include="Components\StaticMesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ClassBase\PlayerController.h">
+    <ClInclude Include="Components\SkeletalMesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer\GAPI.h">
+    <ClInclude Include="Components\BoxCollision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ProjectAPI.h">
+    <ClInclude Include="Components\CapsuleCollision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Src\EntryPoint.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ClassBase\Actor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="Components\LightComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
